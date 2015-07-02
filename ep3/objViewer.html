@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Simple OBJ Viewer</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute  vec4 a_Position;
+
+void main()
+{
+    gl_Position = a_Position;
+    gl_PointSize = 5.0;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+void main()
+{
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+
+<script type="text/javascript" src="objViewer.js"></script>
+
+<body>
+
+<div id="viewport">
+
+
+
+    <div class="content" id="content-1">
+        <div class="title" id="title-1">                
+            <p class="title-canvas">Curva Fechada</p>
+        </div>            
+        <canvas class="gl-canvas" id="gl-canvas1" height="200">
+            Oops ... your browser doesn't support the HTML5 canvas element 
+        </canvas>
+        <div class="btnCss btnResetClass" id="btnReset1">
+            <p>Reset</p>
+        </div>
+    </div>
+
+
+
+    <div class="content" id="content-2">
+    	<div class="title" id="title-2">                
+        	<p class="title-canvas">Trajetória</p>
+        </div>
+    	<canvas class="gl-canvas" id="gl-canvas2" height="200">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>            
+        <div class="btnCss btnResetClass" id="btnReset2">
+            <p>Reset</p>
+        </div>
+        <div class="widgets">            
+            <input id="btnRadioSpline" type="radio" name="1" checked>B-Spline
+            <input id="btnRag" type="radio" name="1">RaG            
+            <input id="numPoints" type="text" placeholder="Número de pontos para ser calculados ..." class="focus">
+            <input id="degreePolynomial" type="text" placeholder="Grau do polinômio ..." class="focus">
+            <input id="standDeviation" type="text" placeholder="Desvio de padrão ..." class="focus">
+        </div>
+        <div class="btnCss btnOkClass" id="btnOk">
+            <p>ok</p>
+        </div>
+    </div>
+
+
+
+
+    <div class="content" id="content-3">
+        <div class="title" id="title-3">
+            <p class="title-canvas">Extrusão em 3D</p>
+        </div>            
+        <canvas class="gl-canvas" id="gl-canvas3" height="200">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+        <div class="btnCss btnResetClass" id="btnReset3">
+            <p>Reset</p>
+        </div>       
+     </div>        
+</div>
+</body>
+</html>
