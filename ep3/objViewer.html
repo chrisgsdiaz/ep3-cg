@@ -45,6 +45,16 @@ void main()
         <div class="btnCss btnResetClass" id="btnReset1">
             <p>Reset</p>
         </div>
+        <div class="widgets">            
+            <input id="btnRadioSplineCF" type="radio" name="1CF" checked>B-Spline
+            <input id="btnRagCF" type="radio" name="1CF">RaG            
+            <input id="numPointsCF" type="text" placeholder="Número de pontos para ser calculados ..." class="focus">
+            <input id="degreePolynomialCF" type="text" placeholder="Grau do polinômio ..." class="focus">
+            <input id="standDeviationCF" type="text" placeholder="Desvio de padrão ..." class="focus">
+        </div>
+        <div class="btnCss btnOkClass" id="btnOkCF">
+            <p>ok</p>
+        </div>
     </div>
 
 
@@ -80,10 +90,15 @@ void main()
         </div>            
         <canvas class="gl-canvas" id="gl-canvas3" height="200">
             Oops ... your browser doesn't support the HTML5 canvas element
-        </canvas>
-        <div class="btnCss btnResetClass" id="btnReset3">
-            <p>Reset</p>
-        </div>       
+        </canvas>        
+        <div id="sectionTrackBall">
+            <input id="inputTrackBall" type="checkbox" name="trackball" value="trackball">
+            <label id="lblInput">Trackball</label>                   
+        </div>
+         <div class="btnCss btnOkClass" id="btnTrackBall">
+            <p>Ok</p>
+        </div>
+
      </div>        
 </div>
 </body>

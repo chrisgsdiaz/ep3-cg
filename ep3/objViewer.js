@@ -5,6 +5,9 @@ var g_points1 = [];
 var g_points2 = []; 
 var g_points3 = [];
 var sigma;
+var degreePolynomial;
+var numPoints;
+var TrackBallON;
 
 
 window.onload = function init() {
@@ -14,29 +17,50 @@ window.onload = function init() {
 	initializeCanvas(canvas3, 3, gl3, program3, g_points3);		// initialize canvas3
 	// bSpline(canvas1, g_points1);	
 
-	dgPolynomial = document.getElementById("degreePolynomial");
-	stDeviation	 = document.getElementById("standDeviation");
-	btnSpline	 = document.getElementById("btnRadioSpline");
-	btnRag       = document.getElementById("btnRag");
+	numPoints 	   = document.getElementById("numPoints");
+	numPointsCF	   = document.getElementById("numPointsCF");
+	dgPolynomial   = document.getElementById("degreePolynomial");
+	dgPolynomialCF = document.getElementById("degreePolynomialCF");
+	stDeviation    = document.getElementById("standDeviation");
+	stDeviationCF  = document.getElementById("standDeviationCF");
+	btnSpline      = document.getElementById("btnRadioSpline");
+	btnSplineCF    = document.getElementById("btnRadioSplineCF");
+	btnRag         = document.getElementById("btnRag");
+	btnRagCF       = document.getElementById("btnRagCF");
+	checkTrackBall = document.getElementById("inputTrackBall");
 
-	stDeviation.style.display = "none";
-	dgPolynomial.style.display = "block";
+	stDeviation.style.display    = "none";
+	stDeviationCF.style.display  = "none";
+	dgPolynomial.style.display   = "block";
+	dgPolynomialCF.style.display = "block";
 
 	btnSpline.onclick = function(){
 		dgPolynomial.style.display = "block";
-		stDeviation.style.display = "none";
+		stDeviation.style.display  = "none";
 	};
 
 	btnRag.onclick = function(){
 		dgPolynomial.style.display = "none";
-		stDeviation.style.display = "block";
+		stDeviation.style.display  = "block";
 	};
+
+	btnSplineCF.onclick = function(){
+		dgPolynomialCF.style.display = "block";
+		stDeviationCF.style.display  = "none";
+	};
+
+	btnRagCF.onclick = function(){
+		dgPolynomialCF.style.display = "none";
+		stDeviationCF.style.display  = "block";
+	};
+		
 }
 
 function initializeCanvas (canvas, numCanvas, gl, program, g_points){
-	canvas 		= document.getElementById( "gl-canvas"+numCanvas );
-	btnClear 	= document.getElementById("btnReset"+numCanvas);
-	btnOk		= document.getElementById("btnOk");	
+	canvas 		 = document.getElementById( "gl-canvas"+numCanvas );
+	btnClear 	 = document.getElementById("btnReset"+numCanvas);
+	btnOk		 = document.getElementById("btnOk");
+	btnTrackBall = document	.getElementById("btnTrackBall");
 
 	gl = WebGLUtils.setupWebGL( canvas );
 	if ( !gl ) { alert( "WebGL isn't available" ); }
@@ -67,12 +91,49 @@ function initializeCanvas (canvas, numCanvas, gl, program, g_points){
 		}
 
 		btnOk.onclick = function(ev) {
-			//RaG(canvas1, g_points1);
-			sigma = stDeviation.value;
-			console.log(sigma);
-			main();
+			//RaG(canvas1, g_points1);						
+
+			sigma 				= stDeviation.value;
+			degreePolynomial 	= dgPolynomial.value;
+			numPoints			= numPoints.value;
+			if(!sigma.match(/\S/) || !degreePolynomial.match(/\S/) || !numPoints.match(/\S/)) {
+        		alert ('Valor vazio não é permitido');
+        		return false;
+    		} else {        		
+				console.log(sigma);
+				//HERE CALL TO B-SPLINE() OR RAG() FUNCTION DEPENDING OF VALUE OF RADIO BUTTON
+				main();
+        		return true;
+    		}
+
 		}
-	}
+
+		btnOkCF.onclick = function(ev) {
+			//RaG(canvas1, g_points1);
+
+			sigma 			 = stDeviationCF.value;
+			degreePolynomial = dgPolynomialCF.value;
+			numPoints		 = numPointsCF.value;
+			if(!sigma.match(/\S/) || !degreePolynomial.match(/\S/) || !numPoints.match(/\S/)) {
+        		alert ('Valor vazio não é permitido');
+        		return false;
+    		} else {        		
+				console.log(sigma);
+				console.log(numPoints);
+				//HERE CALL TO B-SPLINE() OR RAG() FUNCTION DEPENDING OF VALUE OF RADIO BUTTON
+				main();
+        		return true;
+    		}
+		}
+
+		btnTrackBall.onclick = function(ev){
+			if (checkTrackBall.checked == true){
+				console.log("true");
+			}else {
+				console.log("false");
+			}
+		}
+	}	
 
 	gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
